@@ -26,6 +26,19 @@ const validationSignUpData = (req) => {
     }
 }
 
+const validationDataUpdate = (req) => {
+    const allowedEditFileds =  [ "firstName", "lastName", "about", "gender"," photoUrl "];
 
+    const keys = Object.keys(req.body);
+     let isEditAllowed = true;
 
-module.exports = {validationSignUpData};
+  for (let i = 0; i < keys.length; i++) {
+     if (!allowedEditFileds.includes(keys[i])) {
+         isEditAllowed = false;
+         break;
+     }
+}
+return isEditAllowed;
+}
+
+module.exports = {validationSignUpData , validationDataUpdate};

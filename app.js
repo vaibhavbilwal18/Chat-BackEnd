@@ -2,7 +2,9 @@ const express = require('express');
 require('dotenv').config();
 const connectDB = require('./src/config/database');
 const authRouter = require('./src/routes/auth.js');
+const profileRouter = require('./src/routes/profile.js');
 const cookieParser = require('cookie-parser');  // Add this line
+const cors = require('cors');
 
 
 
@@ -11,7 +13,10 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());  // Add this line
 
+
 app.use('/', authRouter);
+app.use('/',profileRouter);
+
 
 connectDB().then(() => {
   console.log('Database connected');
